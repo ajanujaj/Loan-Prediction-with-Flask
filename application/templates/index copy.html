@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Loan Approval</h1>
+    <form action="{{ url_for('predict')}}"method="post">
+
+      <input type="text" name="ApplicantIncome" placeholder="Applicant Income" required="required" />
+      <input type="text" name="CoapplicantIncome" placeholder="Coapplicant Income" required="required" />
+		  <input type="text" name="LoanAmount" placeholder="Loan Amount" required="required" />
+      <input type="text" name="Loan_Amount_Term" placeholder="Loan_Amount_Term ( in month )" required="required" />
+      <input type="text" name="Credit_History" placeholder="Credit_History" required="required" />
+
+      <select name="Gender" id="Gender" placeholder="Gender">
+        <option value="" disabled selected hidden>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+       
+      <select name="Martial Status" id="Martial Status" placeholder="Martial Status">
+        <option value="" disabled selected hidden>Martial Status</option>
+        <option value="Married_Yes">Yes</option>
+        <option value="Married_No">No</option>
+      </select>
+
+      <select name="Dependents" id="Dependents" placeholder="Dependents">
+        <option value="" disabled selected hidden>Dependents</option>
+        <option value="Dependents_0">0</option>
+        <option value="Dependents_1">1</option>
+        <option value="Dependents_2">2</option>
+        <option value="Dependents_3+">3+</option>
+      </select>
+
+      <select name="Education" id="Education" placeholder="Education">
+        <option value="" disabled selected hidden>Education</option>
+        <option value="Education_Graduate">Graduate</option>
+        <option value="Education_Not Graduate">Not Graduate</option>
+      </select>
+
+      <select name="Self_Employed" id="Self_Employed" placeholder="Self_Employed">
+        <option value="" disabled selected hidden>Self_Employed</option>
+        <option value="Self_Employed_Yes">Yes</option>
+        <option value="Self_Employed_No">No</option>
+      </select>
+
+      <select name="property_Area" id="property_Area" placeholder="property_Area">
+        <option value="" disabled selected hidden>property Area</option>
+        <option value="property_Area_Rural">Rural</option>
+        <option value="property_Area_Semiurban">Semiurban</option>
+        <option value="property_Area_Urban">Urban</option>
+      </select>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>

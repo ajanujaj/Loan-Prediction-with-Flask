@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Loan Approval</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+      <fieldset class="form-group">
+        {{ form.hidden_tag() }}
+        <p>
+          {{ form.modelselection.label }}  {{ form.modelselection(placeholder="Select Model") }}  
+            {% for error in form.modelselection.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.ApplicantIncome(placeholder='Applicant Income',size =35)}}  
+            {% for error in form.ApplicantIncome.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+          <p>
+            {{ form.CoapplicantIncome(placeholder='Coapplicant Income',size =35)}}  
+            {% for error in form.CoapplicantIncome.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.LoanAmount(placeholder='Loan Amount',size =35)}}  
+          {% for error in form.LoanAmount.errors %}  
+              <span class="error-message">{{ error }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.Loan_Amount_Term(placeholder='Loan Amount Term (in months)',size =35)}}  
+          {% for error in form.Loan_Amount_Term.errors %}  
+              <span class="error-message">{{ error }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.Credit_History(placeholder='Credit History',size =35)}}  
+          {% for error in form.Credit_History.errors %}  
+              <span class="error-message">{{ error }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.Gender.label }}  {{ form.Gender(placeholder="Select Gender") }}  
+            {% for error in form.Gender.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.Martial_Status.label }}
+          {{ form.Martial_Status(placeholder='Martial Status') }}  
+            {% for error in form.Martial_Status.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.Dependents.label }} 
+          {{ form.Dependents(placeholder='Dependents') }}  
+            {% for error in form.Dependents.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.Education.label }}
+          {{ form.Education(placeholder='Education') }}  
+            {% for error in form.Education.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.Self_Employed.label }}
+          {{ form.Self_Employed(placeholder='Self_Employed') }}  
+            {% for error in form.Self_Employed.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.property_Area.label }}
+          {{ form.property_Area(placeholder='property_Area') }}  
+            {% for error in form.property_Area.errors %}  
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+          <button type="submit" value="Submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </p>
+    </fieldset>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
